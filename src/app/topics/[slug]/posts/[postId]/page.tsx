@@ -2,9 +2,9 @@ import CommentCreateForm from "@/components/comments/CommentCreateForm";
 import PostShow from "@/components/posts/PostShow";
 import paths from "@/utils/paths";
 import Link from "next/link";
-import React from "react";
-import CommentList from "@/components/comments/CommentList";
-import { fetchCommentsByPostId } from "@/queries/comments";
+import React, { Suspense } from "react";
+import CommentListQuery from "@/components/comments/CommentListQuery";
+import LoadingSkeleton from "@/components/posts/LoadingSkeleton";
 
 export default function PostShowPage({
   params,
@@ -24,9 +24,11 @@ export default function PostShowPage({
       >
         {"< "}Back to {slug}
       </Link>
-      <PostShow postId={postId} />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <PostShow postId={postId} />
+      </Suspense>
       <CommentCreateForm postId={postId} startOpen />
-      <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
+      <CommentListQuery postId={postId} />
     </div>
   );
 }

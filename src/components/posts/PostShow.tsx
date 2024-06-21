@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
 const PostShow = async ({ postId }: { postId: string }) => {
+  await new Promise((resolve) => setTimeout(resolve, 4000));
   const post = await prisma.post.findUnique({
     where: {
       id: postId,

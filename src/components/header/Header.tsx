@@ -3,11 +3,11 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  Input,
 } from "@nextui-org/react";
-import React from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import HeaderClient from "../headerClient/HeaderClient";
+import SearchInput from "./SearchInput";
 
 const Header = () => {
   return (
@@ -19,7 +19,9 @@ const Header = () => {
       </NavbarBrand>
       <NavbarContent justify="center">
         <NavbarItem>
-          <Input />
+          <Suspense>
+            <SearchInput />
+          </Suspense>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
