@@ -92,6 +92,7 @@ export async function createCommentAction(
     };
   }
 
+  revalidatePath(paths.homePath());
   revalidatePath(paths.postShowPath(topic.slug, postId));
   return {
     errors: {},
